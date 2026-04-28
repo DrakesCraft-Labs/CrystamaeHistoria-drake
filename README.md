@@ -1,87 +1,50 @@
 # CrystamaeHistoria-drake
 
-## Resumen Drake
-Addon de Slimefun con sistema de historias, progresion y contenido magico.
+[![Rama](https://img.shields.io/badge/branch-1.21--latin-2ea44f)](https://github.com/DrakesCraft-Labs/CrystamaeHistoria-drake/tree/1.21-latin)
+[![Licencia](https://img.shields.io/github/license/DrakesCraft-Labs/CrystamaeHistoria-drake)](https://github.com/DrakesCraft-Labs/CrystamaeHistoria-drake/blob/1.21-latin/LICENSE)
+[![Ultimo commit](https://img.shields.io/github/last-commit/DrakesCraft-Labs/CrystamaeHistoria-drake/1.21-latin)](https://github.com/DrakesCraft-Labs/CrystamaeHistoria-drake/commits/1.21-latin)
 
-## Que anade a Slimefun
-- Extiende contenido de Slimefun con mecanicas y bloques propios del addon.
-- Incluye ajustes de compatibilidad para stack Drake 1.21.
+## Descripción técnica
+Addon de progresión temática con historias, mecánicas mágicas y utilidades complementarias para Slimefun.
 
-## Estado
-- Extraido desde drakes-slimefun-labs (rama 1.21-latin).
-- Objetivo: desarrollo aislado por addon y releases independientes.
+## Qué añade a Slimefun
+- Extiende la narrativa y variedad de contenido del servidor.
+- Incorpora mecánicas mágicas como capa paralela a la rama técnica.
+- Aporta objetivos de progreso adicionales para jugadores avanzados.
 
----
+## Características principales
+- Sistema de historias/eventos con contenido temático.
+- Ítems y utilidades mágicas integradas a la progresión.
+- Compatibilidad de efectos/partículas con Paper 1.21.
 
-# Crystamae Historia - Slimefun 6
+## Matriz de compatibilidad
+| Componente | Estado |
+|---|---|
+| Minecraft | 1.21.x |
+| Paper/Purpur | 1.21.x |
+| Slimefun Core Drake | 11.x (línea `1.21-latin`) |
+| Java | 21 |
 
-> [!NOTE]
-> ### *Magia Arcana y Cristalización para 1.21.1 / Java 21*
-> **Crystamae Historia** permite canalizar la esencia de las historias grabadas en los bloques para crear poderosos artefactos y hechizos. Ahora optimizado bajo el **Drake Framework**.
+## Instalación
+1. Descarga el `.jar` de Releases del repositorio.
+2. Copia el archivo en la carpeta `plugins/` del servidor.
+3. Asegura dependencias (`Slimefun`, `ProtocolLib` u otras según addon).
+4. Reinicia el servidor y revisa `logs/latest.log` para validar carga.
 
----
+## Build local
+```bash
+mvn -DskipTests clean package
+```
 
-## ✨ The Experience
-Descubre el poder de lo invisible. Utiliza el **Chronicler Panel** para extraer relatos de los bloques que te rodean y cristalízalos en el **Realisation Altar** para obtener poder físico.
+Artefacto esperado:
+- `target/CrystamaeHistoria-*.jar`
 
-- **Chronicler Systems**: Extrae memorias de cualquier bloque de Minecraft.
-- **Alquimia de Cristales**: Convierte historias en magia pura usando el Liquefaction Basin.
-- **Hechizos Personalizados**: Más de 80 combinaciones de placas mágicas para equipar en bastones.
-- **Combate Arcano**: Lanza hechizos de caos, fuego y empuje con efectos visuales avanzados.
+## Flujo de release
+1. Crear branch de cambios (`feature/*` o `fix/*`).
+2. Abrir PR hacia `1.21-latin` con plan de pruebas.
+3. Al mergear, crear tag/release y publicar jar compilado.
 
----
+Registrar cambios de contenido/lore y validar partículas/materiales en runtime.
 
-## 🛠️ Especificaciones Técnicas
-
-| Requisito | Versión |
-|-----------|---------|
-| **Minecraft** | 1.21.1+ (Paper Recommended) |
-| **Java** | 21 |
-| **Slimefun** | 6.0-Drake+ |
-| **Dough-Core** | 1.3.1-DRAKE+ |
-
----
-
-## 🔮 Mecánicas Principales
-
-| Sistema | Descripción |
-|---------|-------------|
-| **The Chronicler** | Dibuja las historias de los bloques y lee sus experiencias pasadas. |
-| **Realisation Altar** | Cristaliza la energía mágica de las historias en formas físicas. |
-| **Liquefaction Basin** | Convierte cristales en estado líquido (Crystamae) para crear artefactos. |
-| **Staves & Spells** | Configura hasta 4 placas mágicas en tu bastón para ataques rápidos. |
-
----
-
-## 📽️ Demostración de Hechizos
-<p align="center">
-  <img width="45%" src="https://github.com/Sefiraat/CrystamaeHistoria/blob/master/images/wiki/wiki_spell_chaos.gif?raw=true">
-  <img width="45%" src="https://github.com/Sefiraat/CrystamaeHistoria/blob/master/images/wiki/wiki_spell_rof.gif?raw=true">
-</p>
-
----
-
-## 🚀 Instalación
-Este addon es compatible con el **Reactor Unificado** de DrakesCraft-Labs.
-
-1. Instala el [Slimefun 6 Core](../../slimefun-core/Slimefun4-src) (árbol `sources/slimefun-core` de este monorepo).
-2. Descarga el JAR de CrystamaeHistoria desde Releases.
-3. Copia a `/plugins/`.
-
----
-
-## 🤝 Créditos y Autoría
-- **Autor Original**: [Sefiraat](https://github.com/Sefiraat)
-- **Fork Drake:** [DrakesCraft-Labs](https://github.com/DrakesCraft-Labs)
-- **Créditos Especiales**: MCTantrum, GentlemanCheesy.
-
----
-*Powered by DrakesCraft-Labs - 2026*
-
-<!-- DRAKES-STATUS:BEGIN -->
-> Estado de sincronizacion: **2026-04-24**.
-> Baseline tecnico vigente: **Paper 1.21.1 + Java 21**.
-> CI principal en `1.21-latin`: **Gates 1-5 en verde**.
-> Nota: el monorepo completo sigue en migracion incremental por lotes.
-<!-- DRAKES-STATUS:END -->
-
+## Relación con el monorepo
+Este repositorio se mantiene en paralelo con `drakes-slimefun-labs` para desarrollo aislado por addon y despliegues independientes.
