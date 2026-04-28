@@ -1,0 +1,220 @@
+package io.github.sefiraat.crystamaehistoria;
+
+
+import com.github.drakescraft_labs.labupdate.DrakesLabsReleaseUpdate;
+import com.google.common.base.Preconditions;
+import de.slikey.effectlib.EffectManager;
+import dev.drake.infinitylib.core.AbstractAddon;
+import io.github.sefiraat.crystamaehistoria.commands.GetRanks;
+import io.github.sefiraat.crystamaehistoria.commands.OpenSpellCompendium;
+import io.github.sefiraat.crystamaehistoria.commands.OpenStoryCompendium;
+import io.github.sefiraat.crystamaehistoria.commands.TestSpell;
+import io.github.sefiraat.crystamaehistoria.commands.TestWand;
+import io.github.sefiraat.crystamaehistoria.magic.CastInformation;
+import io.github.sefiraat.crystamaehistoria.magic.SpellType;
+import io.github.sefiraat.crystamaehistoria.magic.spells.core.Spell;
+import io.github.sefiraat.crystamaehistoria.magic.spells.spellobjects.MagicFallingBlock;
+import io.github.sefiraat.crystamaehistoria.magic.spells.spellobjects.MagicProjectile;
+import io.github.sefiraat.crystamaehistoria.magic.spells.spellobjects.MagicSummon;
+import io.github.sefiraat.crystamaehistoria.managers.ConfigManager;
+import io.github.sefiraat.crystamaehistoria.managers.ListenerManager;
+import io.github.sefiraat.crystamaehistoria.managers.RunnableManager;
+import io.github.sefiraat.crystamaehistoria.managers.StoriesManager;
+import io.github.sefiraat.crystamaehistoria.managers.SupportedPluginManager;
+import io.github.sefiraat.crystamaehistoria.player.PlayerStatistics;
+import io.github.sefiraat.crystamaehistoria.slimefun.ArtisticItems;
+import io.github.sefiraat.crystamaehistoria.slimefun.Exalted;
+import io.github.sefiraat.crystamaehistoria.slimefun.Gadgets;
+import io.github.sefiraat.crystamaehistoria.slimefun.ItemGroups;
+import io.github.sefiraat.crystamaehistoria.slimefun.Materials;
+import io.github.sefiraat.crystamaehistoria.slimefun.Mechanisms;
+import io.github.sefiraat.crystamaehistoria.slimefun.NetheoPlants;
+import io.github.sefiraat.crystamaehistoria.slimefun.Runes;
+import io.github.sefiraat.crystamaehistoria.slimefun.Tools;
+import io.github.sefiraat.crystamaehistoria.slimefun.Uniques;
+import io.github.sefiraat.crystamaehistoria.slimefun.items.mechanisms.chroniclerpanel.ChroniclerPanel;
+import io.github.sefiraat.crystamaehistoria.slimefun.items.mechanisms.chroniclerpanel.ChroniclerPanelCache;
+import io.github.sefiraat.crystamaehistoria.stories.BlockDefinition;
+import dev.drake.dough.collections.Pair;
+
+
+import org.bukkit.plugin.PluginManager;
+import org.checkerframework.checker.units.qual.N;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+public class CrystamaeHistoria extends AbstractAddon {
+
+    private static CrystamaeHistoria instance;
+
+    private ConfigManager configManager;
+    private StoriesManager storiesManager;
+    private ListenerManager listenerManager;
+    private RunnableManager runnableManager;
+    private SpellMemory spellMemory;
+    private EffectManager effectManager;
+    private SupportedPluginManager supportedPluginManager;
+
+    public CrystamaeHistoria() {
+        super("Sefiraat", "CrystamaeHistoria", "master", "auto-update");
+    }
+
+    public static CrystamaeHistoria getInstance() {
+        return instance;
+    }
+
+    public static ConfigManager getConfigManager() {
+        return instance.configManager;
+    }
+
+    public static StoriesManager getStoriesManager() {
+        return instance.storiesManager;
+    }
+
+    public static ListenerManager getListenerManager() {
+        return instance.listenerManager;
+    }
+
+    public static RunnableManager getRunnableManager() {
+        return instance.runnableManager;
+    }
+
+    public static SpellMemory getSpellMemory() {
+        return instance.spellMemory;
+    }
+
+    public static EffectManager getEffectManager() {
+        return instance.effectManager;
+    }
+
+    public static SupportedPluginManager getSupportedPluginManager() {
+        return instance.supportedPluginManager;
+    }
+
+    public static PluginManager getPluginManager() {
+        return instance.getServer().getPluginManager();
+    }
+
+    @Nonnull
+    public static Map<MagicProjectile, Pair<CastInformation, Long>> getProjectileMap() {
+        return instance.spellMemory.getProjectileMap();
+    }
+
+    @Nonnull
+    public static Map<MagicFallingBlock, Pair<CastInformation, Long>> getFallingBlockMap() {
+        return instance.spellMemory.getFallingBlockMap();
+    }
+
+    @Nonnull
+    public static Map<UUID, Pair<CastInformation, Long>> getStrikeMap() {
+        return instance.spellMemory.getStrikeMap();
+    }
+
+    @Nonnull
+    public static Map<MagicSummon, Long> getSummonedEntityMap() {
+        return instance.spellMemory.getSummonedEntities();
+    }
+
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public static CastInformation getProjectileCastInfo(MagicProjectile magicProjectile) {
+        CastInformation castInformation = getProjectileMap().get(magicProjectile).getFirstValue();
+        Preconditions.checkNotNull(
+            castInformation,
+            "Cast information is null, magical projectile spawned incorrectly."
+        );
+        return castInformation;
+    }
+
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public static CastInformation getFallingBlockCastInfo(MagicFallingBlock magicFallingBlock) {
+        CastInformation castInformation = getFallingBlockMap().get(magicFallingBlock).getFirstValue();
+        Preconditions.checkNotNull(
+            castInformation,
+            "Cast information is null, magical falling block spawned incorrectly."
+        );
+        return castInformation;
+    }
+
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public static CastInformation getStrikeCastInfo(UUID lightningStrike) {
+        CastInformation castInformation = getStrikeMap().get(lightningStrike).getFirstValue();
+        Preconditions.checkNotNull(
+            castInformation,
+            "Cast information is null, magical projectile spawned incorrectly."
+        );
+        return castInformation;
+    }
+
+    @Override
+    public void enable() {
+        instance = this;
+
+        getLogger().info("########################################");
+        getLogger().info("    Crystamae Historia - By Sefiraat    ");
+        getLogger().info("########################################");
+
+        this.configManager = new ConfigManager();
+        this.storiesManager = new StoriesManager();
+        this.listenerManager = new ListenerManager();
+        this.runnableManager = new RunnableManager();
+        this.spellMemory = new SpellMemory();
+        this.supportedPluginManager = new SupportedPluginManager();
+        this.effectManager = new EffectManager(this);
+
+        configManager.loadConfig();
+
+        SpellType.setupEnabledSpells();
+
+        setupSlimefun();
+
+        setupBstats();
+
+        getAddonCommand().addSub(new TestSpell());
+        getAddonCommand().addSub(new TestWand());
+        getAddonCommand().addSub(new OpenSpellCompendium());
+        getAddonCommand().addSub(new OpenStoryCompendium());
+        getAddonCommand().addSub(new GetRanks());
+    }
+
+    private void setupBstats() {
+        // bStats removed
+    }
+
+    @Override
+    protected void disable() {
+        for (ChroniclerPanelCache cache : ChroniclerPanel.getCaches().values()) {
+            cache.shutdown();
+        }
+
+        spellMemory.clearAll();
+        configManager.saveAll();
+        instance = null;
+    }
+
+    private void setupSlimefun() {
+        ItemGroups.setup();
+        Materials.setup();
+        Mechanisms.setup();
+        Tools.setup();
+        Gadgets.setup();
+        ArtisticItems.setup();
+        Exalted.setup();
+        Uniques.setup();
+        Runes.setup();
+        if (supportedPluginManager.isNetheopoiesis()){
+            try {
+                NetheoPlants.setup();
+            } catch (NoClassDefFoundError e) {
+                getLogger().severe("Netheopoiesis must be updated to meet Crystamaes requirements.");
+            }
+        }
+    }
+}
