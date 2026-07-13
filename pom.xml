@@ -20,6 +20,7 @@
         <maven.deploy.skip>false</maven.deploy.skip>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+        <paper.version>1.21.11-R0.1-SNAPSHOT</paper.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -119,8 +120,9 @@
         </dependency>
         <dependency>
             <groupId>com.github.drakescraft_labs</groupId>
-            <artifactId>Networks-drake</artifactId>
-            <version>11-SNAPSHOT</version>
+            <artifactId>NetworksV6-drake</artifactId>
+            <!-- The legacy Networks-drake snapshot is no longer published. -->
+            <version>11.0.0-drake.6</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
