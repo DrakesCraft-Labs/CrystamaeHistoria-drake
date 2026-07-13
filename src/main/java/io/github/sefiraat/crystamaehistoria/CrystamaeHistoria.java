@@ -175,17 +175,12 @@ public class CrystamaeHistoria extends AbstractAddon {
 
         setupSlimefun();
 
-        setupBstats();
 
         getAddonCommand().addSub(new TestSpell());
         getAddonCommand().addSub(new TestWand());
         getAddonCommand().addSub(new OpenSpellCompendium());
         getAddonCommand().addSub(new OpenStoryCompendium());
         getAddonCommand().addSub(new GetRanks());
-    }
-
-    private void setupBstats() {
-        // bStats removed
     }
 
     @Override
