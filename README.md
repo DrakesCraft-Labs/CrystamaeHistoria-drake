@@ -10,7 +10,7 @@ mecánicas mágicas y utilidades complementarias para Slimefun Drake.
 ## Qué añade a Slimefun
 - Extiende la narrativa y variedad de contenido del servidor.
 - Incorpora mecánicas mágicas como capa paralela a la rama técnica.
-- Aporta objetivos de progreso adicionales para jugadores avanzados.
+- Aporta objetivos de progreso adicionales para players avanzados.
 
 ## Key Features
 - Sistema de historias/eventos con contenido temático.
@@ -50,4 +50,4 @@ existentes en runtime. El fork no descarga ni actualiza artefactos en caliente.
 ## Relación con el monorepo
 Este repositorio es la fuente de desarrollo aislado por addon y despliegues
 independientes. Conserva IDs, recetas y datos de mundo: una actualización no
-debe requerir migrar inventarios de jugadores.
+debe requerir migrar inventarios de players.
