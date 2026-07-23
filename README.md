@@ -12,7 +12,7 @@ mecánicas mágicas y utilidades complementarias para Slimefun Drake.
 - Incorpora mecánicas mágicas como capa paralela a la rama técnica.
 - Aporta objetivos de progreso adicionales para jugadores avanzados.
 
-## Características principales
+## Key Features
 - Sistema de historias/eventos con contenido temático.
 - Ítems y utilidades mágicas integradas a la progresión.
 - Compatibilidad de efectos/partículas con Paper 1.21.
@@ -24,7 +24,7 @@ mecánicas mágicas y utilidades complementarias para Slimefun Drake.
 | Slimefun Core Drake | **11** (línea `1.21-latin`) |
 | Java | 21 |
 
-## Instalación
+## Installation
 1. Compila o descarga el JAR correspondiente a la rama `1.21-latin`.
 2. Respalda el JAR y `plugins/CrystamaeHistoria/` antes de cambiar versión.
 3. Instala un único JAR del addon en una ventana de reinicio.
