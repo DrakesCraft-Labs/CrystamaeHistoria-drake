@@ -29,10 +29,10 @@ public class MainFlexGroup extends FlexItemGroup {
     private static final ItemStack DOCS_ITEM_STACK = ThemeType.themedItemStack(
         Material.BOOK,
         ThemeType.GUIDE,
-        "Documentation Wiki",
-        "Click to get the link to the",
-        "documentation Wiki for Crystamae",
-        "and other Sefiraat addons."
+        "Guia de Crystamae DrakesCraft",
+        "Clic para recibir el enlace a la",
+        "guia y compatibilidad del fork",
+        "activo de DrakesCraft."
     );
 
     private static final int PAGE_SIZE = 36;
@@ -109,13 +109,14 @@ public class MainFlexGroup extends FlexItemGroup {
             return false;
         });
 
-        // Docs
+        // The active fork is the source of truth for mechanics and compatibility.
         menu.replaceExistingItem(DOCS, DOCS_ITEM_STACK);
         menu.addMenuClickHandler(DOCS, (player1, i1, itemStack1, clickAction) -> {
             final TextComponent link = Component.text()
-                .content("To access the documentation Wiki, please click here")
+                .content("Abre la guia de Crystamae DrakesCraft")
                 .color(TextColor.color(175, 200, 60))
-                .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, "https://sefiraat.dev/"))
+                .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL,
+                    "https://github.com/DrakesCraft-Labs/CrystamaeHistoria-drake#readme"))
                 .build();
             player1.sendMessage(link);
             return false;

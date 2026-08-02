@@ -2,7 +2,7 @@ name: CrystamaeHistoria
 author: Sefiraat
 description: A magical addon with a semi-technical slimefun feel allowing for the production of spells, gadgets and more.
 main: io.github.sefiraat.crystamaehistoria.CrystamaeHistoria
-website: https://github.com/Sefiraat/CrystamaeHistoria
+website: https://github.com/DrakesCraft-Labs/CrystamaeHistoria-drake
 version: ${project.version}
 api-version: "1.21"
 depend:
