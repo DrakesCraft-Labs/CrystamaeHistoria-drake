@@ -330,6 +330,12 @@
     </repositories>
     <dependencies>
         <dependency>
+            <groupId>dev.sefiraat</groupId>
+            <artifactId>Netheopoiesis</artifactId>
+            <version>MODIFIED</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
         </dependency>
