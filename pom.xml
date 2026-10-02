@@ -19,6 +19,8 @@
         <dough.version>1.3.1-DRAKE-v11-SNAPSHOT</dough.version>
         <infinitylib.version>1.3.11-DRAKE-SNAPSHOT</infinitylib.version>
         <sefilib.version>0.3.1-DRAKE-SNAPSHOT</sefilib.version>
+        <!-- Única versión publicada de ExoticGarden-drake en maven.drakescraft.cl (API estable entre 1.21.x). -->
+        <exoticgarden.drake.version>11.0-Drake-1.21.1-SNAPSHOT</exoticgarden.drake.version>
         <networks.version>11.0.0-drake.6</networks.version>
         <gastronomicon.version>1.21.11-Drake.1</gastronomicon.version>
 
@@ -346,8 +348,8 @@
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>dev.sefiraat</groupId>
-            <artifactId>Netheopoiesis</artifactId>
+            <groupId>com.github.drakescraft_labs</groupId>
+            <artifactId>Netheopoiesis-drake</artifactId>
             <version>MODIFIED</version>
             <scope>provided</scope>
         </dependency>
@@ -398,7 +400,7 @@
         <dependency>
             <groupId>com.github.drakescraft_labs</groupId>
             <artifactId>ExoticGarden-drake</artifactId>
-            <version>${slimefun.drake.version}</version>
+            <version>${exoticgarden.drake.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
